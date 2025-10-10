@@ -3,8 +3,6 @@ require('config.options')
 require('config.keymap')
 require('config.autocmd')
 require('config.lsp')
--- require('plugins.tokyonight')
--- require('plugins.nvim-treesitter')
 
 local plugins_dir = vim.fn.stdpath("config") .. "/lua/plugins"
 local plugin_files = vim.fn.glob(plugins_dir .. "/*.lua", false, true)
