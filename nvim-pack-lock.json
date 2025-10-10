@@ -1,0 +1,21 @@
+{
+  "plugins": {
+    "nvim-treesitter": {
+      "rev": "42fc28ba",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter",
+      "version": "'master'"
+    },
+    "nvim-treesitter-context": {
+      "rev": "41847d3",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
+    },
+    "nvim-treesitter-textobjects": {
+      "rev": "71385f1",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
+    },
+    "tokyonight.nvim": {
+      "rev": "d14614c",
+      "src": "https://github.com/folke/tokyonight.nvim.git"
+    }
+  }
+}

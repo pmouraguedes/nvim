@@ -1,42 +1,46 @@
--- options
---------------------------------------------------------------------------------
--- Relative and absolute line numbers combined
 vim.opt.number = true
 vim.opt.relativenumber = true
 
--- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
+vim.opt.splitbelow = true
+vim.opt.splitright = true
 
--- Cursorline
-vim.opt.cursorline = true
+vim.opt.wrap = true
 
--- Show whitespace characters
-vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.expandtab = true -- Convert tabs to spaces
+vim.opt.shiftwidth = 4 -- Amount to indent with << and >>
+vim.opt.tabstop = 4 -- How many spaces are shown per Tab
+vim.opt.softtabstop = 4 -- How many spaces are applied when pressing Tab
 
--- Search
+vim.opt.smarttab = true
+vim.opt.smartindent = true
+vim.opt.autoindent = true -- Keep identation from previous line
+vim.opt.breakindent = true
+
+-- Enable break indent
+vim.opt.breakindent = true
+vim.opt.clipboard = "unnamedplus"
+
+vim.opt.scrolloff = 10
+
+vim.opt.virtualedit = "block"
+
+-- vim.opt.inccommand = "split"
+
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
--- Preview substitutions
-vim.opt.inccommand = 'split'
+vim.opt.termguicolors = true
 
--- Text wrapping
-vim.opt.wrap = true
-vim.opt.breakindent = true
+-- Show line under cursor
+vim.opt.cursorline = true
 
--- Tabstops
-vim.opt.expandtab = true
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
-
--- Window splitting
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-
--- Save undo history
+-- Store undos between sessions
 vim.opt.undofile = true
+
+vim.opt.winborder = "rounded"
+-- vim.opt.hlsearch = false
+vim.opt.cursorcolumn = false
+vim.opt.signcolumn = "yes"
 
 -- Set the default border for all floating windows
 vim.opt.winborder = 'rounded'

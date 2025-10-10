@@ -1,39 +1,73 @@
--- keymap
---------------------------------------------------------------------------------
--- Navigate visual lines
-vim.keymap.set({ 'n', 'x' }, 'j', 'gj', { desc = 'Navigate down (visual line)' })
-vim.keymap.set({ 'n', 'x' }, 'k', 'gk', { desc = 'Navigate up (visual line)' })
-vim.keymap.set({ 'n', 'x' }, '<Down>', 'gj', { desc = 'Navigate down (visual line)' })
-vim.keymap.set({ 'n', 'x' }, '<Up>', 'gk', { desc = 'Navigate up (visual line)' })
-vim.keymap.set('i', '<Down>', '<C-\\><C-o>gj', { desc = 'Navigate down (visual line)' })
-vim.keymap.set('i', '<Up>', '<C-\\><C-o>gk', { desc = 'Navigate up (visual line)' })
+local map = vim.keymap.set
+
+vim.keymap.set("i", "jj", "<ESC>", { silent = true })
+
+-- Move to window using the <ctrl> hjkl keys
+map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
+map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
+map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
+map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
+
+-- Resize window using <ctrl> arrow keys
+map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
+map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
+map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
+map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
 
 -- Move Lines
-vim.keymap.set({ 'n', 'x' }, '<M-S-Up>', ':move -2<cr>', { desc = 'Move Line Up' })
-vim.keymap.set({ 'n', 'x' }, '<M-S-Down>', ':move +1<cr>', { desc = 'Move Line Down' })
-vim.keymap.set('i', '<M-S-Up>', '<C-o>:move -2<cr>', { desc = 'Move Line Up' })
-vim.keymap.set('i', '<M-S-Down>', '<C-o>:move +1<cr>', { desc = 'Move Line Down' })
+map("n", "<A-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
+map("n", "<A-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
+map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
+map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
+map("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
+map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 
--- Easier interaction with the system clipboard
-vim.keymap.set({ 'n', 'x' }, '<leader>y', '"+y', { desc = 'Copy to system clipboard' })
-vim.keymap.set({ 'n', 'x' }, '<leader>p', '"+p', { desc = 'Paste from system clipboard after the cursor position' })
-vim.keymap.set({ 'n', 'x' }, '<leader>P', '"+P', { desc = 'Paste from system clipboard before the cursor position' })
+-- buffers
+map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
+-- map("n", "<leader>bd", function()
+-- 	Snacks.bufdelete()
+-- end, { desc = "Delete Buffer" })
+-- map("n", "<leader>bo", function()
+-- 	Snacks.bufdelete.other()
+-- end, { desc = "Delete Other Buffers" })
+map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 
--- Navigating buffers
-vim.keymap.set('n', '<leader>bb', '<C-^>', { desc = 'Switch to alternate buffer' })
-vim.keymap.set('n', '<leader>bn', ':bnext<cr>', { desc = 'Next buffer' })
-vim.keymap.set('n', '<leader>bp', ':bprevious<cr>', { desc = 'Previous buffer' })
+-- quit/session
+map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit Neovim" })
 
--- Ctrl-L redraws the screen by default. Now it will also toggle search highlighting.
-vim.keymap.set('n', '<C-l>', ':set hlsearch!<cr><C-l>', { desc = 'Toggle search highlighting' })
+-- file / find
+map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
+vim.keymap.set("n", "<leader>fa", function()
+	vim.fn.setreg("+", vim.fn.expand("%:p"))
+	print("Copied path: " .. vim.fn.expand("%:p"))
+end, { desc = "Copy full path to clipboard" })
 
--- Toggle visible whitespace characters
-vim.keymap.set('n', '<leader>l', ':listchars!<cr>', { desc = 'Toggle [l]istchars' })
+-- quickfix list
+map("n", "<leader>xq", function()
+	local success, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
+	if not success and err then
+		vim.notify(err, vim.log.levels.ERROR)
+	end
+end, { desc = "Quickfix List" })
 
--- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+map("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
+map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 
--- Quickly source current file / execute Lua code
-vim.keymap.set('n', '<leader>xx', '<Cmd>source %<CR>', { desc = 'Source current file' })
-vim.keymap.set('n', '<leader>x', '<Cmd>:.lua<CR>', { desc = 'Lua: execute current line' })
-vim.keymap.set('v', '<leader>x', '<Cmd>:lua<CR>', { desc = 'Lua: execute current selection' })
+-- code
+map("n", "<leader>cf", vim.lsp.buf.format, { desc = "Format" })
+
+-- diagnostic
+local diagnostic_goto = function(next, severity)
+	local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+	severity = severity and vim.diagnostic.severity[severity] or nil
+	return function()
+		go({ severity = severity })
+	end
+end
+map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
+map("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
+map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
+map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
+map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
+map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
