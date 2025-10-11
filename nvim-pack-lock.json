@@ -4,6 +4,10 @@
       "rev": "37c82fd",
       "src": "https://github.com/okuuva/auto-save.nvim"
     },
+    "dadbod": {
+      "rev": "e95afed",
+      "src": "https://tpope.io/vim/dadbod.git"
+    },
     "flash.nvim": {
       "rev": "2febce6",
       "src": "https://github.com/folke/flash.nvim"
@@ -60,6 +64,14 @@
     "tokyonight.nvim": {
       "rev": "d14614c",
       "src": "https://github.com/folke/tokyonight.nvim.git"
+    },
+    "vim-dadbod-completion": {
+      "rev": "a8dac0b",
+      "src": "https://github.com/kristijanhusak/vim-dadbod-completion"
+    },
+    "vim-dadbod-ui": {
+      "rev": "e8b53c0",
+      "src": "https://github.com/kristijanhusak/vim-dadbod-ui"
     }
   }
 }
