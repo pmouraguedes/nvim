@@ -12,9 +12,21 @@
       "rev": "2febce6",
       "src": "https://github.com/folke/flash.nvim"
     },
+    "image.nvim": {
+      "rev": "446a8a5",
+      "src": "https://github.com/3rd/image.nvim"
+    },
+    "img-clip.nvim": {
+      "rev": "e7e29f0",
+      "src": "https://github.com/HakonHarnes/img-clip.nvim"
+    },
     "lazygit.nvim": {
       "rev": "2305dee",
       "src": "https://github.com/kdheepak/lazygit.nvim"
+    },
+    "luarocks.nvim": {
+      "rev": "1db9093",
+      "src": "https://github.com/vhyrro/luarocks.nvim"
     },
     "mason.nvim": {
       "rev": "ad7146a",
@@ -24,6 +36,10 @@
       "rev": "11c5718",
       "src": "https://github.com/nvim-mini/mini.ai"
     },
+    "mini.align": {
+      "rev": "94af410",
+      "src": "https://github.com/nvim-mini/mini.align"
+    },
     "mini.clue": {
       "rev": "6a42206",
       "src": "https://github.com/nvim-mini/mini.clue"
@@ -31,6 +47,10 @@
     "mini.icons": {
       "rev": "2847986",
       "src": "https://github.com/nvim-mini/mini.icons"
+    },
+    "mini.operators": {
+      "rev": "1d0d1e1",
+      "src": "https://github.com/nvim-mini/mini.operators"
     },
     "mini.pick": {
       "rev": "96ee37d",
