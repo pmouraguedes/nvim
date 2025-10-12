@@ -12,9 +12,17 @@
       "rev": "2febce6",
       "src": "https://github.com/folke/flash.nvim"
     },
+    "lazygit.nvim": {
+      "rev": "2305dee",
+      "src": "https://github.com/kdheepak/lazygit.nvim"
+    },
     "mason.nvim": {
       "rev": "ad7146a",
       "src": "https://github.com/mason-org/mason.nvim"
+    },
+    "mini.ai": {
+      "rev": "11c5718",
+      "src": "https://github.com/nvim-mini/mini.ai"
     },
     "mini.clue": {
       "rev": "6a42206",
@@ -56,6 +64,10 @@
     "persistence.nvim": {
       "rev": "51eef57",
       "src": "https://github.com/folke/persistence.nvim"
+    },
+    "plenary.nvim": {
+      "rev": "b9fd522",
+      "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "snacks.nvim": {
       "rev": "d91fc7d",
