@@ -5,8 +5,8 @@ require('config.autocmd')
 require('config.lsp')
 
 vim.pack.add({
-	{ src = "https://github.com/vhyrro/luarocks.nvim" },
-	{ src = "https://github.com/pmouraguedes/neodarcula.nvim" },
+    { src = "https://github.com/vhyrro/luarocks.nvim" },
+    { src = "https://github.com/pmouraguedes/neodarcula.nvim" },
 })
 
 -- LuaRocks (needed for image plugin)
@@ -18,9 +18,13 @@ require("luarocks-nvim").setup({
 })
 
 -- Color theme
+local local_colortheme = false
+if local_colortheme then
+    vim.opt.runtimepath:prepend("/home/pguedes/projects/nvim/neodarcula.nvim")
+end
 require("neodarcula").setup({
-	transparent = false,
-	dim = true,
+    transparent = false,
+    dim = true,
 })
 vim.cmd([[colorscheme neodarcula]])
 
@@ -32,4 +36,3 @@ for _, file in ipairs(plugin_files) do
     local name = vim.fn.fnamemodify(file, ":t:r") -- filename without .lua
     local ok, spec = pcall(require, "plugins." .. name)
 end
-
