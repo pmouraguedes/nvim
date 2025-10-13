@@ -61,7 +61,7 @@
       "src": "https://github.com/nvim-mini/mini.surround"
     },
     "neodarcula.nvim": {
-      "rev": "f08988d",
+      "rev": "4b18a51",
       "src": "https://github.com/pmouraguedes/neodarcula.nvim"
     },
     "nvim-lspconfig": {

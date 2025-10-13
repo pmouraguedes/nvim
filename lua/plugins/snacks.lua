@@ -55,7 +55,8 @@ map("n", "<leader>gf", function() snacks.picker.git_log_file() end, { desc = "Gi
 map("n", "<leader>sb", function() snacks.picker.lines() end, { desc = "Buffer Lines" })
 map("n", "<leader>sB", function() snacks.picker.grep_buffers() end, { desc = "Grep Open Buffers" })
 map("n", "<leader>sg", function() snacks.picker.grep() end, { desc = "Grep" })
-map("n", "<leader>sw", function() snacks.picker.grep_word() end, { desc = "Visual selection or word", mode = { "n", "x" } })
+map({"n", "x"}, "<leader>sw", function() snacks.picker.grep_word() end, { desc = "Visual selection or word" })
+map({"n", "x"}, "<leader>sW", function() snacks.picker.grep_word({root = false}) end, { desc = "Visual selection or word" })
 -- search
 map("n", '<leader>s"', function() snacks.picker.registers() end, { desc = "Registers" })
 map("n", "<leader>s/", function() snacks.picker.search_history() end, { desc = "Search History" })
