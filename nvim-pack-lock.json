@@ -56,6 +56,10 @@
       "rev": "96ee37d",
       "src": "https://github.com/nvim-mini/mini.pick"
     },
+    "mini.surround": {
+      "rev": "444e155",
+      "src": "https://github.com/nvim-mini/mini.surround"
+    },
     "neodarcula.nvim": {
       "rev": "f08988d",
       "src": "https://github.com/pmouraguedes/neodarcula.nvim"

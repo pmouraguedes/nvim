@@ -25,7 +25,9 @@ snacks.setup({
 })
 
 local map = vim.keymap.set
--- map("n", "<leader>e", function() snacks.explorer() end, { desc = "File Explorer" })
+
+map("n", "<leader>bd", function() snacks.bufdelete() end, { desc = "Delete Buffer" })
+map("n", "<leader>bo", function() snacks.bufdelete.other() end, { desc = "Delete Other Buffers" })
 
 -- Top Pickers & Explorer
 map("n", "<leader><space>", function() snacks.picker.smart() end, { desc = "Smart Find Files" })
