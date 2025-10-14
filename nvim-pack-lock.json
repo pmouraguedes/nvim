@@ -1,16 +1,32 @@
 {
   "plugins": {
+    "LuaSnip": {
+      "rev": "7381330",
+      "src": "https://github.com/L3MON4D3/LuaSnip"
+    },
     "auto-save.nvim": {
       "rev": "37c82fd",
       "src": "https://github.com/okuuva/auto-save.nvim"
+    },
+    "blink.cmp": {
+      "rev": "5037cfa",
+      "src": "https://github.com/saghen/blink.cmp"
     },
     "dadbod": {
       "rev": "e95afed",
       "src": "https://tpope.io/vim/dadbod.git"
     },
+    "diffview.nvim": {
+      "rev": "4516612",
+      "src": "https://github.com/sindrets/diffview.nvim"
+    },
     "flash.nvim": {
       "rev": "2febce6",
       "src": "https://github.com/folke/flash.nvim"
+    },
+    "friendly-snippets": {
+      "rev": "572f566",
+      "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "image.nvim": {
       "rev": "446a8a5",
@@ -63,6 +79,10 @@
     "neodarcula.nvim": {
       "rev": "4b18a51",
       "src": "https://github.com/pmouraguedes/neodarcula.nvim"
+    },
+    "neogit": {
+      "rev": "0f48491a",
+      "src": "https://github.com/NeogitOrg/neogit"
     },
     "nvim-lspconfig": {
       "rev": "623bcf0",
