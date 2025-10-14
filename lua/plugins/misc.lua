@@ -5,6 +5,7 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/nvim-mini/mini.align" },
 })
+vim.cmd("packadd nohlsearch")
 
 require("mason").setup()
 require("mini.icons").setup()
