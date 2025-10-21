@@ -5,15 +5,17 @@ vim.pack.add({
 local snacks = require("snacks")
 
 snacks.setup({
+    -- statuscolumn e.g. have gitsigns on the right and marks on the left
+    statuscolumn = { enabled = true },
     bufdelete = {
         picker = {
             formatters = {
                 file = {
                     filename_first = true, -- display filename before the file path
-                    truncate = 160, -- truncate the file path to (roughly) this length
+                    truncate = 160,        -- truncate the file path to (roughly) this length
                     filename_only = false, -- only show the filename
-                    icon_width = 2, -- width of the icon (in characters)
-                    git_status_hl = true, -- use the git status highlight group for the filename
+                    icon_width = 2,        -- width of the icon (in characters)
+                    git_status_hl = true,  -- use the git status highlight group for the filename
                 },
             },
             layout = {
@@ -38,7 +40,8 @@ map("n", "<leader>n", function() snacks.picker.notifications() end, { desc = "No
 map("n", "<leader>e", function() snacks.explorer() end, { desc = "File Explorer" })
 -- find
 map("n", "<leader>fb", function() snacks.picker.buffers() end, { desc = "Buffers" })
-map("n", "<leader>fc", function() snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, { desc = "Find Config File" })
+map("n", "<leader>fc", function() snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end,
+    { desc = "Find Config File" })
 map("n", "<leader>ff", function() snacks.picker.files() end, { desc = "Find Files" })
 map("n", "<leader>fg", function() snacks.picker.git_files() end, { desc = "Find Git Files" })
 map("n", "<leader>fp", function() snacks.picker.projects() end, { desc = "Projects" })
@@ -55,8 +58,9 @@ map("n", "<leader>gf", function() snacks.picker.git_log_file() end, { desc = "Gi
 map("n", "<leader>sb", function() snacks.picker.lines() end, { desc = "Buffer Lines" })
 map("n", "<leader>sB", function() snacks.picker.grep_buffers() end, { desc = "Grep Open Buffers" })
 map("n", "<leader>sg", function() snacks.picker.grep() end, { desc = "Grep" })
-map({"n", "x"}, "<leader>sw", function() snacks.picker.grep_word() end, { desc = "Visual selection or word" })
-map({"n", "x"}, "<leader>sW", function() snacks.picker.grep_word({root = false}) end, { desc = "Visual selection or word" })
+map({ "n", "x" }, "<leader>sw", function() snacks.picker.grep_word() end, { desc = "Visual selection or word" })
+map({ "n", "x" }, "<leader>sW", function() snacks.picker.grep_word({ root = false }) end,
+    { desc = "Visual selection or word" })
 -- search
 map("n", '<leader>s"', function() snacks.picker.registers() end, { desc = "Registers" })
 map("n", "<leader>s/", function() snacks.picker.search_history() end, { desc = "Search History" })

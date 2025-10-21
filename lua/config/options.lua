@@ -55,3 +55,5 @@ vim.opt.signcolumn = "yes"
 
 -- Set the default border for all floating windows
 vim.opt.winborder = 'rounded'
+
+vim.opt.numberwidth = 4

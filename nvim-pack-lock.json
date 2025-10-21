@@ -28,6 +28,14 @@
       "rev": "572f566",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
+    "gitsigns.nvim": {
+      "rev": "20ad441",
+      "src": "https://github.com/lewis6991/gitsigns.nvim"
+    },
+    "guttermarks.nvim": {
+      "rev": "70ec53a",
+      "src": "https://github.com/dimtion/guttermarks.nvim"
+    },
     "image.nvim": {
       "rev": "446a8a5",
       "src": "https://github.com/3rd/image.nvim"
@@ -116,6 +124,10 @@
     "snacks.nvim": {
       "rev": "d91fc7d",
       "src": "https://github.com/folke/snacks.nvim"
+    },
+    "statuscol.nvim": {
+      "rev": "c46172d",
+      "src": "https://github.com/luukvbaal/statuscol.nvim"
     },
     "tokyonight.nvim": {
       "rev": "d14614c",

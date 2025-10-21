@@ -17,7 +17,7 @@ require("luarocks-nvim").setup({
 })
 
 -- Color theme
-local local_colortheme = false
+local local_colortheme = true
 if local_colortheme then
     vim.opt.runtimepath:prepend("/home/pguedes/projects/nvim/neodarcula.nvim")
 end

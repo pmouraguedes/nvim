@@ -26,6 +26,10 @@ map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", {
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 map("n", "<leader>bD", "<cmd>bd<cr>", { desc = "Delete Buffer and Window" })
 
+-- tabs
+map("n", "<A-h>", "<esc><cmd>tabprevious<cr>", { desc = "Previous tab" })
+map("n", "<A-l>", "<esc><cmd>tabnext<cr>", { desc = "Next tab" })
+
 -- quit/session
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit Neovim" })
 
