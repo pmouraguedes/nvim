@@ -8,9 +8,6 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
--- plugin globals
--- https://github.com/dhruvasagar/vim-table-mode
-vim.g.table_mode_map_prefix = '<leader>m'
 --------------------------------------------------------------------------------
 
 vim.opt.number = true

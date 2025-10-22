@@ -9,7 +9,6 @@ vim.pack.add({
     { src = "https://github.com/dimtion/guttermarks.nvim" },
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
     { src = "https://github.com/nvim-mini/mini.align" },
-    { src = "https://github.com/dhruvasagar/vim-table-mode" },
 })
 vim.cmd("packadd nohlsearch")
 
