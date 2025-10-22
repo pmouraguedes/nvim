@@ -36,16 +36,16 @@ map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit Neovim" })
 -- file / find
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 vim.keymap.set("n", "<leader>fa", function()
-	vim.fn.setreg("+", vim.fn.expand("%:p"))
-	print("Copied path: " .. vim.fn.expand("%:p"))
+    vim.fn.setreg("+", vim.fn.expand("%:p"))
+    print("Copied path: " .. vim.fn.expand("%:p"))
 end, { desc = "Copy full path to clipboard" })
 
 -- quickfix list
 map("n", "<leader>xq", function()
-	local success, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
-	if not success and err then
-		vim.notify(err, vim.log.levels.ERROR)
-	end
+    local success, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
+    if not success and err then
+        vim.notify(err, vim.log.levels.ERROR)
+    end
 end, { desc = "Quickfix List" })
 
 map("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
@@ -53,14 +53,17 @@ map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 
 -- code
 map("n", "<leader>cf", vim.lsp.buf.format, { desc = "Format" })
+vim.keymap.set('n', '<leader>ch', function()
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }), { bufnr = 0 })
+end, { desc = 'Toggle inlay hints' })
 
 -- diagnostic
 local diagnostic_goto = function(next, severity)
-	local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-	severity = severity and vim.diagnostic.severity[severity] or nil
-	return function()
-		go({ severity = severity })
-	end
+    local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+    severity = severity and vim.diagnostic.severity[severity] or nil
+    return function()
+        go({ severity = severity })
+    end
 end
 map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
