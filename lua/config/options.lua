@@ -51,7 +51,7 @@ vim.opt.undofile = true
 vim.opt.winborder = "rounded"
 -- vim.opt.hlsearch = false
 vim.opt.cursorcolumn = false
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = "auto:1-4"
 
 -- Set the default border for all floating windows
 vim.opt.winborder = 'rounded'

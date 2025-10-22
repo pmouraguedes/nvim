@@ -5,8 +5,6 @@ vim.pack.add({
 local snacks = require("snacks")
 
 snacks.setup({
-    -- statuscolumn e.g. have gitsigns on the right and marks on the left
-    statuscolumn = { enabled = true },
     bufdelete = {
         picker = {
             formatters = {
