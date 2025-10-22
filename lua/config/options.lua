@@ -53,6 +53,11 @@ vim.opt.winborder = "rounded"
 -- vim.opt.hlsearch = false
 vim.opt.cursorcolumn = false
 vim.opt.signcolumn = "auto:1-4"
+vim.opt.statuscolumn = "%s"     -- Signs/marks (left)
+  .. "%="                       -- Filler (collapses if empty)
+  .. "%l  "                     -- Numbers + 2-space gap
+  .. "%="                       -- Filler
+  .. "%r"                       -- Gitsigns (right)
 
 -- Set the default border for all floating windows
 vim.opt.winborder = 'rounded'
