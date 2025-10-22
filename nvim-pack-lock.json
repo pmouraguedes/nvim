@@ -12,6 +12,10 @@
       "rev": "5037cfa",
       "src": "https://github.com/saghen/blink.cmp"
     },
+    "conform.nvim": {
+      "rev": "9fd3d5e",
+      "src": "https://github.com/stevearc/conform.nvim"
+    },
     "dadbod": {
       "rev": "e95afed",
       "src": "https://tpope.io/vim/dadbod.git"

@@ -52,8 +52,7 @@ map("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
 map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 
 -- code
-map("n", "<leader>cf", vim.lsp.buf.format, { desc = "Format" })
-vim.keymap.set('n', '<leader>ch', function()
+map('n', '<leader>ch', function()
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }), { bufnr = 0 })
 end, { desc = 'Toggle inlay hints' })
 
