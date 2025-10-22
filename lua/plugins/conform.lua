@@ -6,6 +6,8 @@ require("conform").setup({
     formatters_by_ft = {
         rust = { "rustfmt" },
         go = { "goimports", "gofmt" },
+        c = { "clang-format" },
+        cpp = { "clang-format" },
     },
     default_format_opts = {
         lsp_format = "fallback",
