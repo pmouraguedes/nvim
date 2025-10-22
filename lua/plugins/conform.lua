@@ -4,7 +4,6 @@ vim.pack.add({
 
 require("conform").setup({
     formatters_by_ft = {
-        -- You can customize some of the format options for the filetype (:help conform.format)
         rust = { "rustfmt" },
         go = { "goimports", "gofmt" },
     },

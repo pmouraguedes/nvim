@@ -30,7 +30,7 @@ map("n", "<leader>bd", function() snacks.bufdelete() end, { desc = "Delete Buffe
 map("n", "<leader>bo", function() snacks.bufdelete.other() end, { desc = "Delete Other Buffers" })
 
 -- Top Pickers & Explorer
-map("n", "<leader><space>", function() snacks.picker.smart() end, { desc = "Smart Find Files" })
+map("n", "<leader><space>", function() snacks.picker.files() end, { desc = "Find Files" })
 map("n", "<leader>,", function() snacks.picker.buffers() end, { desc = "Buffers" })
 map("n", "<leader>/", function() snacks.picker.grep() end, { desc = "Grep" })
 map("n", "<leader>:", function() snacks.picker.command_history() end, { desc = "Command History" })
@@ -40,7 +40,7 @@ map("n", "<leader>e", function() snacks.explorer() end, { desc = "File Explorer"
 map("n", "<leader>fb", function() snacks.picker.buffers() end, { desc = "Buffers" })
 map("n", "<leader>fc", function() snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end,
     { desc = "Find Config File" })
-map("n", "<leader>ff", function() snacks.picker.files() end, { desc = "Find Files" })
+map("n", "<leader>fs", function() snacks.picker.smart() end, { desc = "Smart Find Files" })
 map("n", "<leader>fg", function() snacks.picker.git_files() end, { desc = "Find Git Files" })
 map("n", "<leader>fp", function() snacks.picker.projects() end, { desc = "Projects" })
 map("n", "<leader>fr", function() snacks.picker.recent() end, { desc = "Recent" })
