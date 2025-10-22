@@ -43,3 +43,6 @@ vim.diagnostic.config({
         current_line = true,
     },
 })
+
+-- Code actions and refactoring
+-- vim.keymap.set({ "n", "v" }, '<leader>ca', function() vim.lsp.buf.code_action() end, { desc = "Code action" })
