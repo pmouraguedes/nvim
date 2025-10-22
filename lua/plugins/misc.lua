@@ -8,6 +8,8 @@ vim.pack.add({
     { src = "https://github.com/NeogitOrg/neogit" },
     { src = "https://github.com/dimtion/guttermarks.nvim" },
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
+    { src = "https://github.com/nvim-mini/mini.align" },
+    { src = "https://github.com/dhruvasagar/vim-table-mode" },
 })
 vim.cmd("packadd nohlsearch")
 
@@ -18,3 +20,4 @@ require("diffview").setup()
 require("neogit").setup()
 require("guttermarks").setup()
 require('gitsigns').setup()
+require('mini.align').setup()

@@ -160,6 +160,10 @@
     "vim-dadbod-ui": {
       "rev": "e8b53c0",
       "src": "https://github.com/kristijanhusak/vim-dadbod-ui"
+    },
+    "vim-table-mode": {
+      "rev": "e156dbb",
+      "src": "https://github.com/dhruvasagar/vim-table-mode"
     }
   }
 }
