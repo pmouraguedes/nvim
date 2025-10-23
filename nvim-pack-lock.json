@@ -64,37 +64,9 @@
       "rev": "ad7146a",
       "src": "https://github.com/mason-org/mason.nvim"
     },
-    "mini.ai": {
-      "rev": "11c5718",
-      "src": "https://github.com/nvim-mini/mini.ai"
-    },
-    "mini.align": {
-      "rev": "94af410",
-      "src": "https://github.com/nvim-mini/mini.align"
-    },
-    "mini.clue": {
-      "rev": "6a42206",
-      "src": "https://github.com/nvim-mini/mini.clue"
-    },
-    "mini.icons": {
-      "rev": "2847986",
-      "src": "https://github.com/nvim-mini/mini.icons"
-    },
     "mini.nvim": {
       "rev": "cf32454",
       "src": "https://github.com/nvim-mini/mini.nvim"
-    },
-    "mini.operators": {
-      "rev": "1d0d1e1",
-      "src": "https://github.com/nvim-mini/mini.operators"
-    },
-    "mini.pick": {
-      "rev": "96ee37d",
-      "src": "https://github.com/nvim-mini/mini.pick"
-    },
-    "mini.surround": {
-      "rev": "444e155",
-      "src": "https://github.com/nvim-mini/mini.surround"
     },
     "neodarcula.nvim": {
       "rev": "4b18a51",
@@ -156,10 +128,6 @@
     "snacks.nvim": {
       "rev": "d91fc7d",
       "src": "https://github.com/folke/snacks.nvim"
-    },
-    "statuscol.nvim": {
-      "rev": "c46172d",
-      "src": "https://github.com/luukvbaal/statuscol.nvim"
     },
     "tokyonight.nvim": {
       "rev": "d14614c",
