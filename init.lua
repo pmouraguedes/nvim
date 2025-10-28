@@ -33,5 +33,5 @@ local plugin_files = vim.fn.glob(plugins_dir .. "/*.lua", false, true)
 
 for _, file in ipairs(plugin_files) do
     local name = vim.fn.fnamemodify(file, ":t:r") -- filename without .lua
-    local ok, spec = pcall(require, "plugins." .. name)
+    local _, _ = pcall(require, "plugins." .. name)
 end

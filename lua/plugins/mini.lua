@@ -2,7 +2,7 @@ vim.pack.add({
     { src = "https://github.com/nvim-mini/mini.nvim" },
 })
 --------------------------------------------------------------------------------
-require("mini.icons").setup()
+require("mini.icons").setup() -- dependency
 require("mini.align").setup()
 require('mini.align').setup()
 require("mini.pick").setup()

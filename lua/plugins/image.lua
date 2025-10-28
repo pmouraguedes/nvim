@@ -1,6 +1,8 @@
 vim.pack.add({
 	{ src = "https://github.com/3rd/image.nvim" },
+	{ src = "https://github.com/HakonHarnes/img-clip.nvim" },
 })
+
 require("image").setup({
     backend = "kitty",
     kitty_method = "normal",
@@ -68,10 +70,8 @@ require("image").setup({
 
 })
 
-vim.pack.add({
-	{ src = "https://github.com/HakonHarnes/img-clip.nvim" },
-})
 require("img-clip").setup({
     prompt_for_file_name = false,
 })
+
 vim.keymap.set("n", "<leader>p", "<cmd>PasteImage<cr>", { desc = "Paste image from system clipboard"} )

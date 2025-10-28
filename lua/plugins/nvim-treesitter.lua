@@ -1,22 +1,21 @@
 vim.pack.add({
-  {
-    src = "https://github.com/nvim-treesitter/nvim-treesitter",
-    version = "master",
-  },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter",            version = "master" },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
 })
 
 require("nvim-treesitter.configs").setup({
-  ensure_installed = {
-    'lua'
-  },
-  auto_install = true,
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
-  indent = {
-    enable = true,
-  },
+    ensure_installed = {
+        'lua'
+    },
+    auto_install = true,
+    highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+    },
+    indent = {
+        enable = true,
+    },
     incremental_selection = {
         enable = true,
         keymaps = {
@@ -29,24 +28,20 @@ require("nvim-treesitter.configs").setup({
 })
 
 vim.api.nvim_create_autocmd('PackChanged', {
-  desc = 'Handle nvim-treesitter updates',
-  group = vim.api.nvim_create_augroup('nvim-treesitter-pack-changed-update-handler', { clear = true }),
-  callback = function(event)
-    if event.data.kind == 'update' and event.data.spec.name == 'nvim-treesitter' then
-      vim.notify('nvim-treesitter updated, running TSUpdate...', vim.log.levels.INFO)
-      ---@diagnostic disable-next-line: param-type-mismatch
-      local ok = pcall(vim.cmd, 'TSUpdate')
-      if ok then
-        vim.notify('TSUpdate completed successfully!', vim.log.levels.INFO)
-      else
-        vim.notify('TSUpdate command not available yet, skipping', vim.log.levels.WARN)
-      end
-    end
-  end,
-})
-
-vim.pack.add({
-    { src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" },
+    desc = 'Handle nvim-treesitter updates',
+    group = vim.api.nvim_create_augroup('nvim-treesitter-pack-changed-update-handler', { clear = true }),
+    callback = function(event)
+        if event.data.kind == 'update' and event.data.spec.name == 'nvim-treesitter' then
+            vim.notify('nvim-treesitter updated, running TSUpdate...', vim.log.levels.INFO)
+            ---@diagnostic disable-next-line: param-type-mismatch
+            local ok = pcall(vim.cmd, 'TSUpdate')
+            if ok then
+                vim.notify('TSUpdate completed successfully!', vim.log.levels.INFO)
+            else
+                vim.notify('TSUpdate command not available yet, skipping', vim.log.levels.WARN)
+            end
+        end
+    end,
 })
 
 require 'nvim-treesitter.configs'.setup {
@@ -104,12 +99,8 @@ require 'nvim-treesitter.configs'.setup {
     },
 }
 
-vim.pack.add({
-    { src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
-})
-
 require 'treesitter-context'.setup {
-    enable = true,          -- Enable this plugin (Can be enabled/disabled later via commands)
+    enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
     -- multiwindow = false,    -- Enable multiwindow support.
     -- max_lines = 0,          -- How many lines the window should span. Values <= 0 mean no limit.
     -- min_window_height = 0,  -- Minimum editor window height to enable context. Values <= 0 mean no limit.
@@ -125,5 +116,5 @@ require 'treesitter-context'.setup {
 }
 
 vim.keymap.set("n", "[c", function()
-  require("treesitter-context").go_to_context(vim.v.count1)
+    require("treesitter-context").go_to_context(vim.v.count1)
 end, { desc = "Go to parent context", silent = true })

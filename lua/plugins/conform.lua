@@ -8,6 +8,7 @@ require("conform").setup({
         go = { "goimports", "gofmt" },
         c = { "clang-format" },
         cpp = { "clang-format" },
+        typst = { "typstyle", lsp_format = "prefer" },
     },
     default_format_opts = {
         lsp_format = "fallback",

@@ -1,9 +1,7 @@
 vim.pack.add({
-    { src = "https://github.com/nvim-tree/nvim-web-devicons" },
+    -- { src = "https://github.com/nvim-tree/nvim-web-devicons" }, -- dependency
     { src = "https://github.com/sindrets/diffview.nvim" },
 })
-
-require'nvim-web-devicons'.setup {}
 
 require("diffview").setup({
     file_panel = {
@@ -13,6 +11,9 @@ require("diffview").setup({
         },
     },
 })
+
+-- default keymaps: 
+-- :h diffview-maps-view
 
 local map = vim.keymap.set
 map("n", "<leader>go", "<cmd>DiffviewOpen<cr>", { desc = "Open diff view" })

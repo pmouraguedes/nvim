@@ -4,6 +4,10 @@
       "rev": "7381330",
       "src": "https://github.com/L3MON4D3/LuaSnip"
     },
+    "aerial.nvim": {
+      "rev": "5e687b5",
+      "src": "https://github.com/stevearc/aerial.nvim"
+    },
     "auto-save.nvim": {
       "rev": "37c82fd",
       "src": "https://github.com/okuuva/auto-save.nvim"
@@ -136,6 +140,10 @@
     "tokyonight.nvim": {
       "rev": "d14614c",
       "src": "https://github.com/folke/tokyonight.nvim.git"
+    },
+    "typst-preview.nvim": {
+      "rev": "285d040",
+      "src": "https://github.com/chomosuke/typst-preview.nvim"
     },
     "vim-dadbod-completion": {
       "rev": "a8dac0b",

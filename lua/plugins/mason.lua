@@ -12,6 +12,7 @@ require("mason-lspconfig").setup({
         "gopls",
         "lua_ls",
         "postgres_lsp",
+        "tinymist",
     },
     automatic_enable = false,
 })
