@@ -13,6 +13,7 @@ require("mason-lspconfig").setup({
         "lua_ls",
         "postgres_lsp",
         "tinymist",
+        "rust_analyzer",
     },
     automatic_enable = false,
 })

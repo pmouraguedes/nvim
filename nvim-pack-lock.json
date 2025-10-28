@@ -1,5 +1,9 @@
 {
   "plugins": {
+    "FixCursorHold.nvim": {
+      "rev": "1900f89",
+      "src": "https://github.com/antoinemadec/FixCursorHold.nvim"
+    },
     "LuaSnip": {
       "rev": "7381330",
       "src": "https://github.com/L3MON4D3/LuaSnip"
@@ -80,6 +84,14 @@
       "rev": "0f48491a",
       "src": "https://github.com/NeogitOrg/neogit"
     },
+    "neotest": {
+      "rev": "366175e",
+      "src": "https://github.com/nvim-neotest/neotest"
+    },
+    "neotest-golang": {
+      "rev": "f8743de",
+      "src": "https://github.com/fredrikaverpil/neotest-golang"
+    },
     "nvim-dap": {
       "rev": "6782b09",
       "src": "https://github.com/mfussenegger/nvim-dap"
@@ -132,6 +144,10 @@
     "plenary.nvim": {
       "rev": "b9fd522",
       "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
+    "rustaceanvim": {
+      "rev": "be0d1d1",
+      "src": "https://github.com/mrcjkb/rustaceanvim"
     },
     "snacks.nvim": {
       "rev": "d91fc7d",
