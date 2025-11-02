@@ -9,6 +9,7 @@ vim.g.maplocalleader = ' '
 vim.g.have_nerd_font = true
 
 --------------------------------------------------------------------------------
+vim.opt.path:append "**"
 
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -50,7 +51,6 @@ vim.opt.cursorline = true
 vim.opt.undofile = true
 
 vim.opt.winborder = "rounded"
--- vim.opt.hlsearch = false
 vim.opt.cursorcolumn = false
 vim.opt.signcolumn = "auto:1-4"
 vim.opt.statuscolumn = "%s"     -- Signs/marks (left)
