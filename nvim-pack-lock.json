@@ -108,6 +108,10 @@
       "rev": "fbdb48c",
       "src": "https://github.com/theHamsta/nvim-dap-virtual-text"
     },
+    "nvim-jdtls": {
+      "rev": "38d265e",
+      "src": "https://github.com/mfussenegger/nvim-jdtls"
+    },
     "nvim-lspconfig": {
       "rev": "623bcf0",
       "src": "https://github.com/neovim/nvim-lspconfig"

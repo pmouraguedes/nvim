@@ -14,6 +14,7 @@ require("mason-lspconfig").setup({
         "postgres_lsp",
         "tinymist",
         "rust_analyzer",
+        "jdtls",
     },
     automatic_enable = false,
 })
