@@ -9,6 +9,7 @@ require("conform").setup({
         c = { "clang-format" },
         cpp = { "clang-format" },
         typst = { "typstyle", lsp_format = "prefer" },
+        xml = { "xmlformatter" },
     },
     default_format_opts = {
         lsp_format = "fallback",

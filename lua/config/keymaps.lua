@@ -1,6 +1,9 @@
 local map = vim.keymap.set
 
-vim.keymap.set("i", "jj", "<ESC>", { silent = true })
+-- in case capslock is not mapped to esc
+-- map("i", "jj", "<ESC>", { silent = true })
+
+map("n", "<C-/>", "<Cmd>term<CR>", { desc = "Open neovim terminal" })
 
 -- Move to window using the <ctrl> hjkl keys
 map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
