@@ -18,17 +18,33 @@ vim.lsp.enable({
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(ev)
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        local bufnr = ev.buf
+
         if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_completion) then
             vim.opt.completeopt = { "menu", "menuone", "noinsert", "fuzzy", "popup" }
-            vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+            vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
             vim.keymap.set("i", "<C-Space>", function()
                 vim.lsp.completion.get()
             end)
         end
         if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-            vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
+            vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
         else
             vim.print("inlay hints not supported")
+        end
+        -- LSP reference highlighting (LspReferenceText, LspReferenceRead, etc.)
+        if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+            local highlight_augroup = vim.api.nvim_create_augroup("lsp_document_highlight", { clear = false })
+            vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+                buffer = bufnr,
+                group = highlight_augroup,
+                callback = function()
+                    vim.lsp.buf.clear_references()
+                    vim.lsp.buf.document_highlight()
+                end
+            })
+        else
+            vim.print("document_highlight not supported")
         end
     end,
 })
