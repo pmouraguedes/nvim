@@ -35,13 +35,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
         -- LSP reference highlighting (LspReferenceText, LspReferenceRead, etc.)
         if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
             local highlight_augroup = vim.api.nvim_create_augroup("lsp_document_highlight", { clear = false })
+            vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+                buffer = bufnr,
+                group = highlight_augroup,
+                callback = vim.lsp.buf.document_highlight,
+            })
             vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
                 buffer = bufnr,
                 group = highlight_augroup,
-                callback = function()
-                    vim.lsp.buf.clear_references()
-                    vim.lsp.buf.document_highlight()
-                end
+                callback = vim.lsp.buf.clear_references,
             })
         else
             vim.print("document_highlight not supported")

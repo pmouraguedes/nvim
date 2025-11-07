@@ -62,3 +62,5 @@ vim.opt.statuscolumn = "%s"     -- Signs/marks (left)
 vim.opt.winborder = 'rounded'
 
 vim.opt.numberwidth = 4
+
+vim.o.updatetime = 500
