@@ -5,22 +5,94 @@ vim.pack.add({
 local snacks = require("snacks")
 
 snacks.setup({
-    bufdelete = {
-        picker = {
-            formatters = {
-                file = {
-                    filename_first = true, -- display filename before the file path
-                    truncate = 160,        -- truncate the file path to (roughly) this length
-                    filename_only = false, -- only show the filename
-                    icon_width = 2,        -- width of the icon (in characters)
-                    git_status_hl = true,  -- use the git status highlight group for the filename
-                },
+    picker = {
+        sources = {
+            files = {
+                hidden = true,
+                ignored = true,
             },
-            layout = {
-                preset = "vertical",
+            explorer = {
+                hidden = true,
+                ignored = true,
+                layout = function()
+                     return {
+                        preset = 'sidebar',
+                        preview = false,
+                        layout = {
+                            position = "left",
+                            width = (vim.g.explorer_size or {}).width,
+                        },
+                    }
+                end,
+                on_close = function(picker)
+                    vim.g.explorer_size = picker.layout.root:size()
+                end,
+                -- layout = {
+                --     layout = {
+                --         -- width = 0.3, -- Percentage of screen width (0-1, e.g., 30%)
+                --         -- OR absolute columns: width = 40  (e.g., 40 columns wide)
+                --         -- height = 1.0,  -- Optional: Full height (or 0.8 for 80%)
+                --         position = "left", -- Or "right", "center", etc.
+                --         -- min_width = 1,  -- Optional: Override default min_width if needed for small values
+                --     },
+                -- },
+
+                -- actions = {
+                --     -- Variant 1 (preferred)
+                --     inc_width = function(picker)
+                --         local layout = vim.deepcopy(picker.resolved_layout)
+                --         local width = layout.layout.width + 5
+                --         ---@cast width number
+                --         layout.layout.width = width
+                --         layout.layout.min_width = width
+                --         picker:set_layout(layout)
+                --     end,
+                --     -- Variant 2 (poor perf)
+                --     dec_width = function(picker)
+                --         local layout = vim.deepcopy(picker.resolved_layout)
+                --         local width = layout.layout.width - 5
+                --         ---@cast width number
+                --         layout.layout.width = width
+                --         layout.layout.min_width = width
+                --         picker:set_layout(layout)
+                --     end,
+                -- },
+                -- win = {
+                --     list = {
+                --         keys = {
+                --             ['<Right>'] = 'inc_width',
+                --             ['<Left>'] = 'dec_width',
+                --         },
+                --     },
+                -- },
+            },
+            grep = {
+                hidden = true,
+                ignored = true,
             },
         },
-        explorer = {},
+        exclude = {
+            "*.class",
+            "*.jar",
+            "*.o",
+            "*.so",
+        },
+        formatters = {
+            file = {
+                filename_first = true, -- display filename before the file path
+                truncate = 100,        -- truncate the file path to (roughly) this length
+                filename_only = false, -- only show the filename
+                icon_width = 2,        -- width of the icon (in characters)
+                git_status_hl = true,  -- use the git status highlight group for the filename
+                min_width = 10,
+            },
+        },
+        layout = {
+            preset = "vertical",
+            layout = {
+                width = 0.95,
+            },
+        },
     },
 })
 
@@ -30,12 +102,13 @@ map("n", "<leader>bd", function() snacks.bufdelete() end, { desc = "Delete Buffe
 map("n", "<leader>bo", function() snacks.bufdelete.other() end, { desc = "Delete Other Buffers" })
 
 -- Top Pickers & Explorer
-map("n", "<leader><space>", function() snacks.picker.files({hidden = true, ignored = true,}) end, { desc = "Find Files" })
+map("n", "<leader><space>", function() snacks.picker.files() end, { desc = "Find Files" })
 map("n", "<leader>,", function() snacks.picker.buffers() end, { desc = "Buffers" })
 map("n", "<leader>/", function() snacks.picker.grep() end, { desc = "Grep" })
 map("n", "<leader>:", function() snacks.picker.command_history() end, { desc = "Command History" })
 map("n", "<leader>n", function() snacks.picker.notifications() end, { desc = "Notification History" })
-map("n", "<leader>e", function() snacks.explorer({hidden = true, ignored = true,}) end, { desc = "File Explorer" })
+map("n", "<leader>e", function() snacks.explorer({}) end, { desc = "File Explorer" })
+
 -- find
 map("n", "<leader>fb", function() snacks.picker.buffers() end, { desc = "Buffers" })
 map("n", "<leader>fc", function() snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end,

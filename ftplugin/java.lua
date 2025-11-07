@@ -1,3 +1,5 @@
+-- vim.print("loading java modules...")
+
 vim.pack.add({
     { src = "https://github.com/mfussenegger/nvim-jdtls" },
 })
@@ -15,6 +17,15 @@ if vim.fn.filereadable(lombok_jar) == 0 then
     vim.notify("Lombok JAR missing; ensure jdtls is fully installed via :Mason", vim.log.levels.WARN)
 end
 
+-- Compute root_dir early for reuse
+-- local root_dir = require("jdtls").setup.find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" })
+local root_dir = require("jdtls").setup.find_root({ ".git" })
+if not root_dir then
+    -- vim.notify("No project root found; check for build files", vim.log.levels.ERROR)
+    return
+end
+-- vim.print(root_dir)
+
 vim.lsp.config("jdtls", {
     cmd = {
         java25_cmd,                  -- Run JDT LS with JDK 25
@@ -31,6 +42,7 @@ vim.lsp.config("jdtls", {
         "-jar", vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
         "-configuration", jdtls_path .. "/config_linux", -- Or config_mac/config_win
         "-data", vim.fn.stdpath("cache") .. "/jdtls-workspace/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t"),
+        -- "-data", root_dir .. "/.jdtls-workspace",
     },
 
     settings = {
@@ -77,3 +89,20 @@ vim.lsp.config("jdtls", {
 })
 
 vim.lsp.enable("jdtls")
+
+vim.keymap.set('n', '<A-o>', function() require('jdtls').organize_imports() end, { desc = 'JDTLS: Organize Imports' })
+vim.keymap.set('n', 'crv', function() require('jdtls').extract_variable() end, { desc = 'JDTLS: Extract Variable' })
+vim.keymap.set('v', 'crv', function() require('jdtls').extract_variable(true) end,
+    { desc = 'JDTLS: Extract Variable (Visual)' })
+vim.keymap.set('n', 'crc', function() require('jdtls').extract_constant() end, { desc = 'JDTLS: Extract Constant' })
+vim.keymap.set('v', 'crc', function() require('jdtls').extract_constant(true) end,
+    { desc = 'JDTLS: Extract Constant (Visual)' })
+vim.keymap.set('v', 'crm', function() require('jdtls').extract_method(true) end,
+    { desc = 'JDTLS: Extract Method (Visual)' })
+
+-- If using nvim-dap (requires java-debug and vscode-java-test bundles)
+-- Test class (Normal mode: <leader>df)
+vim.keymap.set('n', '<leader>df', function() require('jdtls').test_class() end, { desc = 'JDTLS: Test Class' })
+-- Test nearest method (Normal mode: <leader>dn)
+vim.keymap.set('n', '<leader>dn', function() require('jdtls').test_nearest_method() end,
+    { desc = 'JDTLS: Test Nearest Method' })
