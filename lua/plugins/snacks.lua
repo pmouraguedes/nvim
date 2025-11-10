@@ -107,6 +107,7 @@ map("n", "<leader>,", function() snacks.picker.buffers() end, { desc = "Buffers"
 map("n", "<leader>/", function() snacks.picker.grep() end, { desc = "Grep" })
 map("n", "<leader>:", function() snacks.picker.command_history() end, { desc = "Command History" })
 map("n", "<leader>n", function() snacks.picker.notifications() end, { desc = "Notification History" })
+
 map("n", "<leader>e", function() snacks.explorer({}) end, { desc = "File Explorer" })
 
 -- find

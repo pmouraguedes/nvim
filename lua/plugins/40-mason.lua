@@ -15,6 +15,7 @@ require("mason-lspconfig").setup({
         "tinymist",
         "rust_analyzer",
         "jdtls",
+        "protols",
     },
     automatic_enable = false,
 })

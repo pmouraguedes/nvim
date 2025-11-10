@@ -13,6 +13,7 @@ vim.lsp.enable({
     "gopls",
     "clangd",
     "tinymist",
+    "protols",
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
