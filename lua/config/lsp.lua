@@ -8,13 +8,13 @@
 -- so in ~.config/lsp/lua_ls.lua for lua_ls, for example.
 
 -- Use vim.lsp.enable('…') (not require'lspconfig'.….setup{}) to enable a config, so that it activates for its filetypes.
-vim.lsp.enable({
-    "lua_ls",
-    "gopls",
-    "clangd",
-    "tinymist",
-    "protols",
-})
+-- vim.lsp.enable({
+--     "lua_ls",
+--     "gopls",
+--     "clangd",
+--     "tinymist",
+--     "protols",
+-- })
 
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(ev)

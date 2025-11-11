@@ -88,7 +88,7 @@ vim.lsp.config("jdtls", {
     },
 })
 
-vim.lsp.enable("jdtls")
+-- vim.lsp.enable("jdtls")
 
 vim.keymap.set('n', '<A-o>', function() require('jdtls').organize_imports() end, { desc = 'JDTLS: Organize Imports' })
 vim.keymap.set('n', 'crv', function() require('jdtls').extract_variable() end, { desc = 'JDTLS: Extract Variable' })
