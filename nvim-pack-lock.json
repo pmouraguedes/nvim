@@ -164,6 +164,10 @@
       "rev": "bd71cd4",
       "src": "https://github.com/folke/snacks.nvim"
     },
+    "sql-ghosty.nvim": {
+      "rev": "7a61ef8",
+      "src": "https://github.com/pmouraguedes/sql-ghosty.nvim"
+    },
     "tokyonight.nvim": {
       "rev": "d14614c",
       "src": "https://github.com/folke/tokyonight.nvim.git"

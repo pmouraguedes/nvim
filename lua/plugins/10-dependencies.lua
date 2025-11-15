@@ -8,3 +8,5 @@ vim.pack.add({
 })
 
 require'nvim-web-devicons'.setup {}
+
+require("luasnip.loaders.from_vscode").lazy_load()
