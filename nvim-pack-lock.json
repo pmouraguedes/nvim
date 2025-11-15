@@ -165,7 +165,7 @@
       "src": "https://github.com/folke/snacks.nvim"
     },
     "sql-ghosty.nvim": {
-      "rev": "7a61ef8",
+      "rev": "bd85393",
       "src": "https://github.com/pmouraguedes/sql-ghosty.nvim"
     },
     "tokyonight.nvim": {
