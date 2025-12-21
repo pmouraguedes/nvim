@@ -5,14 +5,14 @@ vim.pack.add({
 })
 
 local java25_cmd = "/usr/lib/jvm/java-25-openjdk/bin/java"
-local jdtls_path = vim.fn.expand("$MASON/packages/jdtls") -- Fixed for Mason 2.0
+local jdtls_path = vim.fn.stdpath("data") .. "/mason/packages/jdtls"
 if vim.fn.isdirectory(jdtls_path) == 0 then
     vim.notify("JDTLS not found; run :MasonInstall jdtls", vim.log.levels.ERROR)
     return
 end
 
 -- Lombok JAR path (bundled with Mason's jdtls)
-local lombok_jar = vim.fn.expand("$MASON/share/jdtls/lombok.jar")
+local lombok_jar = jdtls_path .. "/lombok.jar"
 if vim.fn.filereadable(lombok_jar) == 0 then
     vim.notify("Lombok JAR missing; ensure jdtls is fully installed via :Mason", vim.log.levels.WARN)
 end
@@ -25,6 +25,13 @@ if not root_dir then
     return
 end
 -- vim.print(root_dir)
+
+-- Find the launcher jar
+local launcher_jar = vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
+if launcher_jar == "" then
+    vim.notify("JDTLS launcher jar not found in " .. jdtls_path .. "/plugins/", vim.log.levels.ERROR)
+    return
+end
 
 vim.lsp.config("jdtls", {
     cmd = {
@@ -39,10 +46,9 @@ vim.lsp.config("jdtls", {
         "--add-modules=ALL-SYSTEM",
         "--add-opens", "java.base/java.util=ALL-UNNAMED",
         "--add-opens", "java.base/java.lang=ALL-UNNAMED",
-        "-jar", vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
+        "-jar", launcher_jar,
         "-configuration", jdtls_path .. "/config_linux", -- Or config_mac/config_win
         "-data", vim.fn.stdpath("cache") .. "/jdtls-workspace/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t"),
-        -- "-data", root_dir .. "/.jdtls-workspace",
     },
 
     settings = {

@@ -96,6 +96,7 @@ miniclue.setup({
         { mode = "n", keys = "<Leader>f", desc = "+files/find" },
         { mode = "n", keys = "<Leader>g", desc = "+git" },
         { mode = "n", keys = "<Leader>m", desc = "+table mode" },
+        { mode = "n", keys = "<Leader>o", desc = "+open code" },
         { mode = "n", keys = "<Leader>q", desc = "+quit/session" },
         { mode = "n", keys = "<Leader>s", desc = "+search" },
         { mode = "n", keys = "<Leader>t", desc = "+test" },

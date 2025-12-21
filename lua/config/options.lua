@@ -9,15 +9,16 @@ vim.g.maplocalleader = ' '
 vim.g.have_nerd_font = true
 
 --------------------------------------------------------------------------------
-vim.opt.path:append "**"
-
 vim.opt.number = true
 vim.opt.relativenumber = true
+-- Show line under cursor
+vim.opt.cursorline = true
+vim.opt.wrap = true
+vim.opt.scrolloff = 10
+vim.opt.sidescrolloff = 8
 
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-
-vim.opt.wrap = true
 
 vim.opt.expandtab = true -- Convert tabs to spaces
 vim.opt.shiftwidth = 4 -- Amount to indent with << and >>
@@ -29,26 +30,21 @@ vim.opt.smartindent = true
 vim.opt.autoindent = true -- Keep identation from previous line
 vim.opt.breakindent = true
 
--- Enable break indent
-vim.opt.breakindent = true
 vim.opt.clipboard = "unnamedplus"
-
-vim.opt.scrolloff = 10
 
 vim.opt.virtualedit = "block"
 
+-- Store undos between sessions
+vim.opt.undofile = true
+
 -- vim.opt.inccommand = "split"
 
+-- search
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
+-- visual
 vim.opt.termguicolors = true
-
--- Show line under cursor
-vim.opt.cursorline = true
-
--- Store undos between sessions
-vim.opt.undofile = true
 
 vim.opt.winborder = "rounded"
 vim.opt.cursorcolumn = false
@@ -64,3 +60,8 @@ vim.opt.winborder = 'rounded'
 vim.opt.numberwidth = 4
 
 vim.o.updatetime = 500
+
+-- behavior
+vim.opt.iskeyword:append("-")
+vim.opt.path:append "**"
+vim.opt.wildignore:append({ "*.o", "*.obj", "*.pyc", "*.class", "*.jar" })

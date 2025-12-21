@@ -6,7 +6,7 @@ vim.pack.add({
     { src = "https://github.com/chomosuke/typst-preview.nvim" },
     { src = "https://github.com/pmouraguedes/sql-ghosty.nvim" },
 })
-vim.cmd("packadd nohlsearch")
+-- vim.cmd("packadd nohlsearch")
 
 require("neogit").setup()
 require("guttermarks").setup()

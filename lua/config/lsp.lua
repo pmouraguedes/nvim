@@ -31,7 +31,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
             vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
         else
-            vim.print("inlay hints not supported")
+            -- vim.print("inlay hints not supported")
         end
         -- LSP reference highlighting (LspReferenceText, LspReferenceRead, etc.)
         if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
@@ -47,7 +47,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 callback = vim.lsp.buf.clear_references,
             })
         else
-            vim.print("document_highlight not supported")
+            -- vim.print("document_highlight not supported")
         end
     end,
 })
