@@ -25,9 +25,13 @@ map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
 map("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
 map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 
+-- indent
+map("n", "<Tab><Tab>", "==", { desc = "Indent line" })
+
 -- buffers
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 map("n", "<leader>bD", "<cmd>bd<cr>", { desc = "Delete Buffer and Window" })
+map("n", "<leader>fb", ':BuffergatorToggle<CR>', { desc = 'Toggle Buffergator buffer list'})
 
 -- vanilla buffer switching
 vim.cmd([[
@@ -82,3 +86,11 @@ map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 
 -- terminal mode mappings
 vim.keymap.set("t", "<ESC>", "<C-\\><C-n>")
+
+-- command typo corrections
+vim.cmd([[
+  cnoreabbrev Wq wq
+  cnoreabbrev WQ wq
+  cnoreabbrev W w
+  cnoreabbrev Q q
+]])

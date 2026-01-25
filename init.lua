@@ -25,7 +25,7 @@ require("neodarcula").setup({
     transparent = false,
     dim = true,
 })
-vim.cmd([[colorscheme neodarcula]])
+vim.cmd.colorscheme("neodarcula")
 
 -- Dinamically load other plugins
 local plugins_dir = vim.fn.stdpath("config") .. "/lua/plugins"

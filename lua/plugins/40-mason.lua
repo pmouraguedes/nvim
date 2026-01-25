@@ -25,5 +25,6 @@ require('mason-tool-installer').setup({
         "rust_analyzer",
         "jdtls",
         "protols",
+        "pyright",
     },
 })

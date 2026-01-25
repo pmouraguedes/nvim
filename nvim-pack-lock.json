@@ -180,6 +180,10 @@
       "rev": "285d040",
       "src": "https://github.com/chomosuke/typst-preview.nvim"
     },
+    "vim-buffergator": {
+      "rev": "0514af6",
+      "src": "https://github.com/jeetsukumaran/vim-buffergator"
+    },
     "vim-dadbod-completion": {
       "rev": "a8dac0b",
       "src": "https://github.com/kristijanhusak/vim-dadbod-completion"

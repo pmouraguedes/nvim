@@ -111,7 +111,7 @@ map("n", "<leader>n", function() snacks.picker.notifications() end, { desc = "No
 map("n", "<leader>e", function() snacks.explorer({}) end, { desc = "File Explorer" })
 
 -- find
-map("n", "<leader>fb", function() snacks.picker.buffers() end, { desc = "Buffers" })
+-- map("n", "<leader>fb", function() snacks.picker.buffers() end, { desc = "Buffers" })
 map("n", "<leader>fc", function() snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end,
     { desc = "Find Config File" })
 map("n", "<leader>fs", function() snacks.picker.smart() end, { desc = "Smart Find Files" })

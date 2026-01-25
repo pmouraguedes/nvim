@@ -4,7 +4,6 @@ vim.pack.add({
 --------------------------------------------------------------------------------
 require("mini.icons").setup() -- dependency
 require("mini.align").setup()
-require('mini.align').setup()
 require("mini.pick").setup()
 --------------------------------------------------------------------------------
 local ai = require("mini.ai")

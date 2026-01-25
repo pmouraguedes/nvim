@@ -45,7 +45,6 @@ vim.opt.smartcase = true
 
 -- visual
 vim.opt.termguicolors = true
-
 vim.opt.winborder = "rounded"
 vim.opt.cursorcolumn = false
 vim.opt.signcolumn = "auto:1-4"
@@ -65,3 +64,49 @@ vim.o.updatetime = 500
 vim.opt.iskeyword:append("-")
 vim.opt.path:append "**"
 vim.opt.wildignore:append({ "*.o", "*.obj", "*.pyc", "*.class", "*.jar" })
+vim.opt.wildignore:append({ "**/venv/**", "**/.venv/**", "**/node_modules/**", "**/.git/**", "**/__pycache__/**", "*.pyc", "*.pyo", "**/build/**", "**/dist/**" })
+
+-- Use ripgrep for :grep and respect .gitignore
+if vim.fn.executable("rg") == 1 then
+  vim.opt.grepprg = "rg --vimgrep --smart-case"
+  vim.opt.grepformat = "%f:%l:%c:%m"
+end
+
+-- statusline
+-- https://shapeshed.com/vim-statuslines/
+
+local function git_branch()
+    local bufpath = vim.api.nvim_buf_get_name(0)
+    if bufpath == "" then
+        return ""
+    end
+
+    local bufdir = vim.fn.fnamemodify(bufpath, ":h")
+    local branch = vim.fn.system(string.format(
+        "git -C %s branch --show-current 2>/dev/null | tr -d '\n'",
+        vim.fn.shellescape(bufdir)
+    ))
+
+    if branch ~= "" then
+        return "[" .. branch .. "]"
+    end
+    return ""
+end
+_G.git_branch = git_branch
+
+local function setup_dynamic_statusline()
+    vim.api.nvim_create_autocmd({"WinEnter", "BufEnter"}, {
+        callback = function()
+            vim.opt_local.statusline = "%<%f  %#StatusLineGitBranch#%{v:lua.git_branch()} %#StatusLine#%h%w%m%r %=%{% &showcmdloc == 'statusline' ? '%-10.S ' : '' %}%{% exists('b:keymap_name') ? '<'..b:keymap_name..'> ' : '' %}%{% &busy > 0 ? '◐ ' : '' %}%(%{luaeval('(package.loaded[''vim.diagnostic''] and vim.diagnostic.status()) or '''' ')} %)%{% &ruler ? ( &rulerformat == '' ? '%-14.(%l,%c%V%) %P' : &rulerformat ) : '' %}"
+        end
+    })
+
+    vim.api.nvim_create_autocmd({"WinLeave", "BufLeave"}, {
+      callback = function()
+            vim.opt_local.statusline = "%<%f %h%w%m%r %=%{% &showcmdloc == 'statusline' ? '%-10.S ' : '' %}%{% exists('b:keymap_name') ? '<'..b:keymap_name..'> ' : '' %}%{% &busy > 0 ? '◐ ' : '' %}%(%{luaeval('(package.loaded[''vim.diagnostic''] and vim.diagnostic.status()) or '''' ')} %)%{% &ruler ? ( &rulerformat == '' ? '%-14.(%l,%c%V%) %P' : &rulerformat ) : '' %}"
+      end
+    })
+end
+
+setup_dynamic_statusline()
+
