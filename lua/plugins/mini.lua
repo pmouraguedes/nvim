@@ -3,7 +3,15 @@ vim.pack.add({
 })
 --------------------------------------------------------------------------------
 require("mini.icons").setup() -- dependency
-require("mini.align").setup()
+-- Disabled default ga/gA mappings — they steal keys in visual mode and pad
+-- columns to the widest part (looks like "align to biggest word").
+-- Call MiniAlign.align_strings() or re-enable mappings if you need alignment.
+require("mini.align").setup({
+    mappings = {
+        start = "",
+        start_with_preview = "",
+    },
+})
 require("mini.pick").setup()
 --------------------------------------------------------------------------------
 local ai = require("mini.ai")
@@ -14,7 +22,8 @@ require("mini.ai").setup({
             i = { "@block.inner", "@conditional.inner", "@loop.inner" },
         }),
         f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }), -- function
-        c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }), -- class
+        -- this conflicts with cell / dadbod
+        -- c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }), -- class
         t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" }, -- tags
         d = { "%f[%d]%d+" }, -- digits
         e = { -- Word with case

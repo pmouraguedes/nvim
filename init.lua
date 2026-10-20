@@ -5,7 +5,7 @@ require('config.lsp')
 
 vim.pack.add({
     { src = "https://github.com/vhyrro/luarocks.nvim" },
-    { src = "https://github.com/pmouraguedes/neodarcula.nvim" },
+    -- { src = "https://github.com/pmouraguedes/neodarcula.nvim" },
 })
 
 -- LuaRocks (needed for image plugin)

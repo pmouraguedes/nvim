@@ -59,6 +59,10 @@
       "rev": "e7e29f0",
       "src": "https://github.com/HakonHarnes/img-clip.nvim"
     },
+    "kulala.nvim": {
+      "rev": "6656c9d",
+      "src": "https://github.com/mistweaverco/kulala.nvim"
+    },
     "lazygit.nvim": {
       "rev": "2305dee",
       "src": "https://github.com/kdheepak/lazygit.nvim"
@@ -159,6 +163,10 @@
     "plenary.nvim": {
       "rev": "b9fd522",
       "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
+    "rest.nvim": {
+      "rev": "714d551",
+      "src": "https://github.com/rest-nvim/rest.nvim"
     },
     "rustaceanvim": {
       "rev": "be0d1d1",

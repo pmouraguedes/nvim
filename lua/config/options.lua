@@ -32,7 +32,7 @@ vim.opt.breakindent = true
 
 vim.opt.clipboard = "unnamedplus"
 
-vim.opt.virtualedit = "block"
+-- vim.opt.virtualedit = "block" -- makes <C-v> blocks a strict rectangle past EOL
 
 -- Store undos between sessions
 vim.opt.undofile = true
