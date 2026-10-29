@@ -60,16 +60,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 -- Diagnostics
+-- only signs and underlines by default; details on demand with <leader>cd (float)
+-- or <leader>cD (toggle virtual lines for the current line)
 vim.diagnostic.config({
-    -- Use the default configuration
-    -- virtual_lines = true,
-
-    -- Alternatively, customize specific options
-    virtual_lines = {
-        -- Only show virtual line diagnostics for the current cursor line
-        current_line = true,
-    },
+    virtual_lines = false,
 })
+
+vim.keymap.set("n", "<leader>cD", function()
+    local enabled = vim.diagnostic.config().virtual_lines
+    vim.diagnostic.config({ virtual_lines = not enabled and { current_line = true } or false })
+end, { desc = "Toggle diagnostic virtual lines" })
 
 -- Code actions and refactoring
 -- vim.keymap.set({ "n", "v" }, '<leader>ca', function() vim.lsp.buf.code_action() end, { desc = "Code action" })
