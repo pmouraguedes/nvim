@@ -1,12 +1,12 @@
 -- autocmd
 --------------------------------------------------------------------------------
--- Highlight when yanking
+-- Highlight when yanking or putting
 ---@diagnostic disable-next-line: param-type-mismatch
-vim.api.nvim_create_autocmd('TextYankPost', {
-    desc = 'Highlight when yanking (copying) text',
+vim.api.nvim_create_autocmd({ 'TextYankPost', 'TextPutPost' }, {
+    desc = 'Highlight yanked (copied) or put (pasted) text',
     group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
     callback = function()
-        vim.highlight.on_yank()
+        vim.hl.hl_op()
     end,
 })
 

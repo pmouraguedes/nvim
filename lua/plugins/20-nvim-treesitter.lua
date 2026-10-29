@@ -1,105 +1,71 @@
 vim.pack.add({
-    { src = "https://github.com/nvim-treesitter/nvim-treesitter",            version = "master" },
-    { src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter",             version = "main" },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
 })
 
-require("nvim-treesitter.configs").setup({
-    ensure_installed = {
-        'lua'
-    },
-    auto_install = true,
-    highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-    },
-    indent = {
-        enable = true,
-    },
-    incremental_selection = {
-        enable = true,
-        keymaps = {
-            init_selection = "<C-space>",
-            node_incremental = "<C-space>",
-            scope_incremental = false,
-            node_decremental = "<bs>",
-        },
-    },
+-- nvim-treesitter (main) only installs parsers and queries; highlighting, folds and
+-- incremental selection are built into neovim and enabled per buffer below
+local ts = require("nvim-treesitter")
+ts.install({ "lua" })
+
+local available = {}
+for _, lang in ipairs(ts.get_available()) do
+    available[lang] = true
+end
+
+local function enable(buf, lang)
+    if not pcall(vim.treesitter.start, buf, lang) then
+        return
+    end
+    -- treesitter indent is still provided by nvim-treesitter (experimental)
+    vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+end
+
+vim.api.nvim_create_autocmd("FileType", {
+    desc = "Start treesitter, installing the parser if missing",
+    group = vim.api.nvim_create_augroup("treesitter-start", { clear = true }),
+    callback = function(ev)
+        local lang = vim.treesitter.language.get_lang(ev.match) or ev.match
+        if vim.treesitter.language.add(lang) then
+            enable(ev.buf, lang)
+        elseif available[lang] then
+            -- replaces auto_install from the old master branch
+            ts.install({ lang }):await(vim.schedule_wrap(function()
+                if vim.api.nvim_buf_is_valid(ev.buf) then
+                    enable(ev.buf, lang)
+                end
+            end))
+        end
+    end,
 })
 
-vim.api.nvim_create_autocmd('PackChanged', {
-    desc = 'Handle nvim-treesitter updates',
-    group = vim.api.nvim_create_augroup('nvim-treesitter-pack-changed-update-handler', { clear = true }),
+vim.api.nvim_create_autocmd("PackChanged", {
+    desc = "Update parsers when nvim-treesitter is updated",
+    group = vim.api.nvim_create_augroup("nvim-treesitter-pack-changed-update-handler", { clear = true }),
     callback = function(event)
-        if event.data.kind == 'update' and event.data.spec.name == 'nvim-treesitter' then
-            vim.notify('nvim-treesitter updated, running TSUpdate...', vim.log.levels.INFO)
+        if event.data.kind == "update" and event.data.spec.name == "nvim-treesitter" then
+            vim.notify("nvim-treesitter updated, running TSUpdate...", vim.log.levels.INFO)
             ---@diagnostic disable-next-line: param-type-mismatch
-            local ok = pcall(vim.cmd, 'TSUpdate')
-            if ok then
-                vim.notify('TSUpdate completed successfully!', vim.log.levels.INFO)
-            else
-                vim.notify('TSUpdate command not available yet, skipping', vim.log.levels.WARN)
+            local ok = pcall(vim.cmd, "TSUpdate")
+            if not ok then
+                vim.notify("TSUpdate command not available yet, skipping", vim.log.levels.WARN)
             end
         end
     end,
 })
 
-require 'nvim-treesitter.configs'.setup {
-    textobjects = {
-        select = {
-            enable = true,
+-- textobjects (af/if, ao/io, ...) come from mini.ai; this plugin is only used for swapping
+local swap = require("nvim-treesitter-textobjects.swap")
 
-            -- Automatically jump forward to textobj, similar to targets.vim
-            lookahead = true,
+vim.keymap.set("n", "<leader>a", function()
+    swap.swap_next("@parameter.inner")
+end, { desc = "Swap with next parameter" })
+vim.keymap.set("n", "<leader>A", function()
+    swap.swap_previous("@parameter.inner")
+end, { desc = "Swap with previous parameter" })
 
-            keymaps = {
-                -- You can use the capture groups defined in textobjects.scm
-                ["af"] = "@function.outer",
-                ["if"] = "@function.inner",
-                ["ac"] = "@class.outer",
-                ["ao"] = "@comment.outer",
-                -- You can optionally set descriptions to the mappings (used in the desc parameter of
-                -- nvim_buf_set_keymap) which plugins like which-key display
-                ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
-                -- You can also use captures from other query groups like `locals.scm`
-                ["as"] = { query = "@local.scope", query_group = "locals", desc = "Select language scope" },
-            },
-            -- You can choose the select mode (default is charwise 'v')
-            --
-            -- Can also be a function which gets passed a table with the keys
-            -- * query_string: eg '@function.inner'
-            -- * method: eg 'v' or 'o'
-            -- and should return the mode ('v', 'V', or '<c-v>') or a table
-            -- mapping query_strings to modes.
-            selection_modes = {
-                ['@parameter.outer'] = 'v', -- charwise
-                ['@function.outer'] = 'V',  -- linewise
-                ['@class.outer'] = '<c-v>', -- blockwise
-            },
-            -- If you set this to `true` (default is `false`) then any textobject is
-            -- extended to include preceding or succeeding whitespace. Succeeding
-            -- whitespace has priority in order to act similarly to eg the built-in
-            -- `ap`.
-            --
-            -- Can also be a function which gets passed a table with the keys
-            -- * query_string: eg '@function.inner'
-            -- * selection_mode: eg 'v'
-            -- and should return true or false
-            include_surrounding_whitespace = true,
-        },
-        swap = {
-            enable = true,
-            swap_next = {
-                ["<leader>a"] = { query = "@parameter.inner", desc = "Swap with next parameter" },
-            },
-            swap_previous = {
-                ["<leader>A"] = "@parameter.inner",
-            },
-        },
-    },
-}
-
-require 'treesitter-context'.setup {
+require("treesitter-context").setup({
     enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
     -- multiwindow = false,    -- Enable multiwindow support.
     -- max_lines = 0,          -- How many lines the window should span. Values <= 0 mean no limit.
@@ -113,7 +79,7 @@ require 'treesitter-context'.setup {
     -- separator = nil,
     -- zindex = 20,   -- The Z-index of the context window
     -- on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
-}
+})
 
 vim.keymap.set("n", "[c", function()
     require("treesitter-context").go_to_context(vim.v.count1)

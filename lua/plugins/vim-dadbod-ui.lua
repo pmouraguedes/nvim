@@ -20,3 +20,11 @@ vim.g.db_ui_use_nvim_notify = true
 vim.g.db_ui_execute_on_save = false
 
 vim.keymap.set("n", "<leader>D", "<cmd>DBUIToggle<CR>", { desc = "Toggle DBUI"} )
+
+-- table/column completion from the connected database, used by 'autocomplete'
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "sql", "mysql", "plsql" },
+    callback = function()
+        vim.opt_local.complete = "Fvim_dadbod_completion#omni^10,.^5,w^5,b^5,u^5"
+    end,
+})

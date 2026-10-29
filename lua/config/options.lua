@@ -60,6 +60,12 @@ vim.opt.numberwidth = 4
 
 vim.o.updatetime = 500
 
+-- completion (built in, see :h ins-autocompletion)
+-- "o" is the omnifunc, which LSP sets to vim.lsp.omnifunc on attach
+vim.opt.autocomplete = true
+vim.opt.complete = "o^10,.^5,w^5,b^5,u^5"
+vim.opt.completeopt = { "menuone", "noselect", "fuzzy", "popup" }
+
 -- behavior
 vim.opt.iskeyword:append("-")
 vim.opt.path:append "**"

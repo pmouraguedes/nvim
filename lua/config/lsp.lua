@@ -8,13 +8,19 @@
 -- so in ~.config/lsp/lua_ls.lua for lua_ls, for example.
 
 -- Use vim.lsp.enable('…') (not require'lspconfig'.….setup{}) to enable a config, so that it activates for its filetypes.
--- vim.lsp.enable({
---     "lua_ls",
---     "gopls",
---     "clangd",
---     "tinymist",
---     "protols",
--- })
+-- Servers are installed by mason (see plugins/40-mason.lua); rust_analyzer is
+-- left out on purpose, rustaceanvim starts it.
+vim.lsp.enable({
+    "clangd",
+    "gopls",
+    "jdtls",
+    "lua_ls",
+    "postgres_lsp",
+    "protols",
+    "pyright",
+    "stylua",
+    "tinymist",
+})
 
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(ev)
@@ -22,11 +28,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
         local bufnr = ev.buf
 
         if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_completion) then
-            vim.opt.completeopt = { "menu", "menuone", "noinsert", "fuzzy", "popup" }
+            -- the popup itself comes from 'autocomplete' (see options.lua); this adds
+            -- trigger characters (e.g. ".") and applies snippets/imports on <C-y>
             vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
             vim.keymap.set("i", "<C-Space>", function()
                 vim.lsp.completion.get()
-            end)
+            end, { buffer = bufnr })
         end
         if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
             vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
