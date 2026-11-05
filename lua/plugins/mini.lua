@@ -3,15 +3,8 @@ vim.pack.add({
 })
 --------------------------------------------------------------------------------
 require("mini.icons").setup() -- dependency
--- Disabled default ga/gA mappings — they steal keys in visual mode and pad
--- columns to the widest part (looks like "align to biggest word").
--- Call MiniAlign.align_strings() or re-enable mappings if you need alignment.
-require("mini.align").setup({
-    mappings = {
-        start = "",
-        start_with_preview = "",
-    },
-})
+-- ga = align, gA = align with preview (visual or as operator, e.g. gaip=)
+require("mini.align").setup()
 require("mini.pick").setup()
 --------------------------------------------------------------------------------
 local ai = require("mini.ai")
