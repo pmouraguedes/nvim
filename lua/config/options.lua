@@ -100,15 +100,22 @@ local function git_branch()
 end
 _G.git_branch = git_branch
 
+-- floating windows (pickers, popups) would otherwise get a statusline too
+local function is_float()
+    return vim.api.nvim_win_get_config(0).relative ~= ""
+end
+
 local function setup_dynamic_statusline()
     vim.api.nvim_create_autocmd({"WinEnter", "BufEnter"}, {
         callback = function()
+            if is_float() then return end
             vim.opt_local.statusline = "%<%f  %#StatusLineGitBranch#%{v:lua.git_branch()} %#StatusLine#%h%w%m%r %=%{% &showcmdloc == 'statusline' ? '%-10.S ' : '' %}%{% exists('b:keymap_name') ? '<'..b:keymap_name..'> ' : '' %}%{% &busy > 0 ? '◐ ' : '' %}%(%{luaeval('(package.loaded[''vim.diagnostic''] and vim.diagnostic.status()) or '''' ')} %)%{% &ruler ? ( &rulerformat == '' ? '%-14.(%l,%c%V%) %P' : &rulerformat ) : '' %}"
         end
     })
 
     vim.api.nvim_create_autocmd({"WinLeave", "BufLeave"}, {
       callback = function()
+            if is_float() then return end
             vim.opt_local.statusline = "%<%f %h%w%m%r %=%{% &showcmdloc == 'statusline' ? '%-10.S ' : '' %}%{% exists('b:keymap_name') ? '<'..b:keymap_name..'> ' : '' %}%{% &busy > 0 ? '◐ ' : '' %}%(%{luaeval('(package.loaded[''vim.diagnostic''] and vim.diagnostic.status()) or '''' ')} %)%{% &ruler ? ( &rulerformat == '' ? '%-14.(%l,%c%V%) %P' : &rulerformat ) : '' %}"
       end
     })

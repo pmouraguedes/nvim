@@ -62,3 +62,11 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+
+-- No insert-mode autocompletion in prompt-like buffers (pickers, inputs)
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "snacks_picker_input", "snacks_input" },
+    callback = function()
+        vim.opt_local.autocomplete = false
+    end,
+})
